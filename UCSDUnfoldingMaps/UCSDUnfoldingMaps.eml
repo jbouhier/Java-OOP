@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inheritJdk="true">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="core.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/core.jar!/"/>
+	</lib>
+	<lib name="gluegen-rt.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/gluegen-rt.jar!/"/>
+	</lib>
+	<lib name="jogl-all.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/jogl-all.jar!/"/>
+	</lib>
+	<lib name="log4j-1.2.15.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/log4j-1.2.15.jar!/"/>
+	</lib>
+	<lib name="sqlite-jdbc-3.7.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/sqlite-jdbc-3.7.2.jar!/"/>
+	</lib>
+	<lib name="json4processing.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/json4processing.jar!/"/>
+	</lib>
+	<lib name="libTUIO.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/libTUIO.jar!/"/>
+	</lib>
+	<lib name="unfolding.0.9.7-uscd.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/UCSDUnfoldingMaps/lib/unfolding.0.9.7-uscd.jar!/"/>
+	</lib>
+	<lib name="GlassFish 5.0.0 - JMS: Java Message Service" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - Bean Validation" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - RESTful Web Service" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - JSON Processing (JSR 353)" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - CDI: Contexts and Dependency Injection" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - Batch Applications" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - Concurrency Utils (JSR 236)" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - JSF" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - Transaction API (JSR 907)" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - EJB" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - Connector Architecture (JSR 322)" scope="PROVIDED"/>
+	<lib name="GlassFish 5.0.0 - WebSocket" scope="PROVIDED"/>
+	<levels>
+		<level name="GlassFish 5.0.0 - JMS: Java Message Service" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - Bean Validation" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - RESTful Web Service" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - JSON Processing (JSR 353)" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - CDI: Contexts and Dependency Injection" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - Batch Applications" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - Concurrency Utils (JSR 236)" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - JSF" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - Transaction API (JSR 907)" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - EJB" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - Connector Architecture (JSR 322)" value="application_server_libraries"/>
+		<level name="GlassFish 5.0.0 - WebSocket" value="application_server_libraries"/>
+	</levels>
+</component>
