@@ -134,14 +134,19 @@ public class EarthquakeCityMap extends PApplet {
 		fill(color(255, 255, 255)); // white
 		ellipse(50, 154, 15, 15);
 		rect(43, 185, 15, 15);
-		fill(255, 255, 0); // yellow
+		ellipse(50, 355, 15, 15);
+		stroke(0);
+		strokeWeight(2);
+		line(40, 345, 60, 365);
+		line(60, 345, 40, 365);
+		fill(color(255, 255, 0)); // yellow
 		ellipse(50, 265, 15, 15);
-		fill(0, 0, 255); // blue
+		fill(color(0, 0, 255)); // blue
 		ellipse(50, 295, 15, 15);
-		fill(255, 0, 0); // red
+		fill(color(255, 0, 0)); // red
 		ellipse(50, 325, 15, 15);
 
-		fill(0, 0, 0);
+		fill(color(0, 0, 0));
 		text("City Marker", 75, 124);
 		text("Land Quake", 75, 154);
 		text("Ocean Quake", 75, 192);
@@ -149,6 +154,7 @@ public class EarthquakeCityMap extends PApplet {
 		text("Shallow", 75, 265);
 		text("Intermediate", 75, 295);
 		text("Deep", 75, 325);
+		text("Past day", 75, 354);
 	}
 
 
