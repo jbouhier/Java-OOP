@@ -22,10 +22,9 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	//
 	// You will want to set this in the constructor, either
 	// using the thresholds below, or a continuous function
-	// based on magnitude. 
+	// based on magnitude.
   
-	
-	
+
 	/** Greater than or equal to this threshold is a moderate earthquake */
 	public static final float THRESHOLD_MODERATE = 5;
 	/** Greater than or equal to this threshold is a light earthquake */
@@ -36,15 +35,14 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	/** Greater than or equal to this threshold is a deep depth */
 	public static final float THRESHOLD_DEEP = 300;
 
-	// ADD constants for colors
 
-	
+
 	// abstract method implemented in derived classes
 	public abstract void drawEarthquake(PGraphics pg, float x, float y);
 		
 	
 	// constructor
-	public EarthquakeMarker (PointFeature feature) 
+	public EarthquakeMarker(PointFeature feature)
 	{
 		super(feature.getLocation());
 		// Add a radius property and then set the properties
@@ -52,7 +50,7 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 		float magnitude = Float.parseFloat(properties.get("magnitude").toString());
 		properties.put("radius", 2 * magnitude );
 		setProperties(properties);
-		this.radius = 1.75f * getMagnitude();
+		this.radius = 2f * getMagnitude();
 	}
 	
 
@@ -71,23 +69,24 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 		
 		// reset to previous styling
 		pg.popStyle();
-		
 	}
 	
-	// determine color of marker from depth, and set pg's fill color 
-	// using the pg.fill method.
-	// We suggest: Deep = red, intermediate = blue, shallow = yellow
-	// But this is up to you, of course.
-	// You might find the getters below helpful.
+
 	private void colorDetermine(PGraphics pg) {
-		//TODO: Implement this method
+		float depth = getDepth();
+
+		// Deep = red
+		if (depth >= 300 && depth <= 700)
+			pg.fill(255, 0, 0);
+		// Intermediate = blue
+		else if (depth >= 70 && depth < 300)
+			pg.fill(0, 0, 255);
+		// Shallow = yellow
+		else if (depth > 0 && depth < 70)
+			pg.fill(255, 255, 0);
 	}
 	
-	
-	/*
-	 * getters for earthquake properties
-	 */
-	
+
 	public float getMagnitude() {
 		return Float.parseFloat(getProperty("magnitude").toString());
 	}

@@ -122,24 +122,33 @@ public class EarthquakeCityMap extends PApplet {
 	// Draw key in GUI
 	private void addKey() {
 		fill(255, 250, 240);
-		rect(25, 50, 150, 250);
+		rect(25, 50, 150, 350);
 
-		fill(0);
+		fill(0); // black
 		textAlign(LEFT, CENTER);
 		textSize(12);
 		text("Earthquake Key", 50, 75);
 
-		fill(color(255, 0, 0));
+		fill(color(255, 0, 0)); // red
 		triangle(50, 120, 45, 130, 55, 130);
-		fill(color(255, 255, 255));
-		ellipse(50, 160, 15, 15);
+		fill(color(255, 255, 255)); // white
+		ellipse(50, 154, 15, 15);
 		rect(43, 185, 15, 15);
+		fill(255, 255, 0); // yellow
+		ellipse(50, 265, 15, 15);
+		fill(0, 0, 255); // blue
+		ellipse(50, 295, 15, 15);
+		fill(255, 0, 0); // red
+		ellipse(50, 325, 15, 15);
 
 		fill(0, 0, 0);
 		text("City Marker", 75, 124);
-		text("Land Quake", 75, 160);
+		text("Land Quake", 75, 154);
 		text("Ocean Quake", 75, 192);
 		text("Size ~ Magnitude", 45, 225);
+		text("Shallow", 75, 265);
+		text("Intermediate", 75, 295);
+		text("Deep", 75, 325);
 	}
 
 
