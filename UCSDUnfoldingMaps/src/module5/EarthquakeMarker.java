@@ -91,8 +91,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 
 	/** Show the title of the earthquake if this marker is selected */
 	@Override
-	public void showTitle(PGraphics pg, float x, float y)
-	{
+	public void showTitle(PGraphics pg, float x, float y) {
 		// TODO: Implement this method
 		
 	}
