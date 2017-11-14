@@ -89,8 +89,8 @@ public class EarthquakeCityMap extends PApplet {
 	    quakeMarkers = new ArrayList<Marker>();
 	    
 	    for (PointFeature feature : earthquakes) {
-		  if (isLand(feature)) quakeMarkers.add(new LandQuakeMarker(feature)); // LandQuake
-		  else quakeMarkers.add(new OceanQuakeMarker(feature)); // OceanQuakes
+	    	if (isLand(feature)) quakeMarkers.add(new LandQuakeMarker(feature)); // LandQuake
+			else quakeMarkers.add(new OceanQuakeMarker(feature)); // OceanQuakes
 	    }
 
 	    // could be used for debugging
@@ -129,7 +129,7 @@ public class EarthquakeCityMap extends PApplet {
 	private void selectMarkerIfHover(List<Marker> markers) {
 		for (Marker m : markers) {
 			if (m.isInside(map, mouseX, mouseY) && lastSelected == null) {
-				System.out.println("Marker: " + m.getProperties().toString());
+//				System.out.println("Marker: " + m.getProperties().toString());
 				lastSelected = (CommonMarker) m;
 				lastSelected.setSelected(true);
 			}

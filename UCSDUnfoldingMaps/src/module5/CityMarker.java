@@ -46,7 +46,18 @@ public class CityMarker extends CommonMarker {
 	
 	/** Show the title of the city if this marker is selected */
 	public void showTitle(PGraphics pg, float x, float y) {
+		// Save previous drawing style
+		pg.pushStyle();
 
+		pg.fill(255, 255, 255);
+		pg.rect(x, y, 180, 15, 5);
+
+		pg.textAlign(37, 3);
+		pg.fill(0, 0, 0);
+		pg.text(getCity() + " " + getCountry() + " " + getPopulation(), x + 5, y + 5);
+
+		// Restore previous drawing style
+		pg.popStyle();
 	}
 	
 	
