@@ -38,17 +38,15 @@ public class CityMarker extends CommonMarker {
 		
 		// IMPLEMENT: drawing triangle for each city
 		pg.fill(150, 30, 30);
-		pg.triangle(x, y-TRI_SIZE, x-TRI_SIZE, y+TRI_SIZE, x+TRI_SIZE, y+TRI_SIZE);
+		pg.triangle(x, y - TRI_SIZE, x - TRI_SIZE, y + TRI_SIZE, x + TRI_SIZE, y + TRI_SIZE);
 		
 		// Restore previous drawing style
 		pg.popStyle();
 	}
 	
 	/** Show the title of the city if this marker is selected */
-	public void showTitle(PGraphics pg, float x, float y)
-	{
-		
-		// TODO: Implement this method
+	public void showTitle(PGraphics pg, float x, float y) {
+
 	}
 	
 	

@@ -92,8 +92,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 	/** Show the title of the earthquake if this marker is selected */
 	@Override
 	public void showTitle(PGraphics pg, float x, float y) {
-		// TODO: Implement this method
-		
+		this.getTitle();
 	}
 
 	
@@ -115,15 +114,12 @@ public abstract class EarthquakeMarker extends CommonMarker
 	private void colorDetermine(PGraphics pg) {
 		float depth = getDepth();
 		
-		if (depth < THRESHOLD_INTERMEDIATE) {
+		if (depth < THRESHOLD_INTERMEDIATE)
 			pg.fill(255, 255, 0);
-		}
-		else if (depth < THRESHOLD_DEEP) {
-			pg.fill(0, 0, 255);
-		}
-		else {
+		else if
+			(depth < THRESHOLD_DEEP) pg.fill(0, 0, 255);
+		else
 			pg.fill(255, 0, 0);
-		}
 	}
 	
 	
