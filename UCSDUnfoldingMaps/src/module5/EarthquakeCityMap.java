@@ -147,6 +147,21 @@ public class EarthquakeCityMap extends PApplet {
 		// TODO: Implement this method
 		// Hint: You probably want a helper method or two to keep this code
 		// from getting too long/disorganized
+
+		if (lastClicked == null) {
+			lastSelected = null;
+			// TODO Display all the markers
+		} else {
+			// TODO If an EarthquakeMarker is selected, displayed CityMarkers inside the threat circle
+			// TODO -> EarthquakeMarker.threatCircle()
+			// TODO Hide all other markers
+
+			// TODO If a CityMarker is selected, display EarthquakeMarkers within threat circle
+			// TODO -> EarthquakeMarker.threatCircle()
+			// TODO Hide all others CityMarker and EarthquakeMarker
+		}
+
+
 	}
 	
 	
