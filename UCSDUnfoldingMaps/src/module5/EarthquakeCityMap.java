@@ -167,11 +167,11 @@ public class EarthquakeCityMap extends PApplet {
 	
 	// loop over and unhide all markers
 	private void unhideMarkers() {
-		for(Marker marker : quakeMarkers) {
+		for (Marker marker : quakeMarkers) {
 			marker.setHidden(false);
 		}
 			
-		for(Marker marker : cityMarkers) {
+		for (Marker marker : cityMarkers) {
 			marker.setHidden(false);
 		}
 	}
