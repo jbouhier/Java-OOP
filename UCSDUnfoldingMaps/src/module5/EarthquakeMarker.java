@@ -115,7 +115,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 	 *  or predictive applications.
 	 */
 	public double threatCircle() {	
-		double miles = 20.0f * Math.pow(1.8, 2*getMagnitude()-5);
+		double miles = 20.0f * Math.pow(1.8, 2 * getMagnitude() - 5);
 		double km = (miles * kmPerMile);
 		return km;
 	}
