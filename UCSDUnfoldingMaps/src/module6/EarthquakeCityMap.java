@@ -1,8 +1,6 @@
 package module6;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.Feature;
@@ -81,11 +79,11 @@ public class EarthquakeCityMap extends PApplet {
 		
 		// FOR TESTING: Set earthquakesURL to be one of the testing files by uncommenting
 		// one of the lines below.  This will work whether you are online or offline
-		//earthquakesURL = "test1.atom";
-		//earthquakesURL = "test2.atom";
+		// earthquakesURL = "test1.atom";
+		// earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
-		//earthquakesURL = "quiz2.atom";
+		// earthquakesURL = "quiz2.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
@@ -116,15 +114,15 @@ public class EarthquakeCityMap extends PApplet {
 	    }
 
 	    // could be used for debugging
-	    printQuakes();
+//	    printQuakes();
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
 	    //           for their geometric properties
 	    map.addMarkers(quakeMarkers);
 	    map.addMarkers(cityMarkers);
-	    
-	    
+
+//		sortAndPrint(5);
 	}  // End setup
 	
 	
@@ -132,13 +130,26 @@ public class EarthquakeCityMap extends PApplet {
 		background(0);
 		map.draw();
 		addKey();
-		
 	}
-	
-	
-	// TODO: Add the method:
-	//   private void sortAndPrint(int numToPrint)
-	// and then call that method from setUp
+
+	/**
+	 * Sort quakeMakers by order of highest to lowest magnitude
+	 *
+	 * @param numToPrint number of quakeMarkers to print
+	 */
+	private void sortAndPrint(int numToPrint) {
+		Object quakesArr[] = quakeMarkers.toArray();
+		Arrays.sort(quakesArr, Collections.reverseOrder());
+
+		// Protect loop from throwing IndexOutOfBoundsException
+		int arrLen = quakesArr.length;
+		numToPrint = numToPrint > arrLen ? arrLen : numToPrint;
+
+		for (int i = 0; i < numToPrint; i++) {
+			System.out.println(quakesArr[i].toString());
+		}
+	}
+
 	
 	/** Event handler that gets called automatically when the 
 	 * mouse moves.
