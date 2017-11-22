@@ -83,7 +83,7 @@ public class EarthquakeCityMap extends PApplet {
 		// earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
-		// earthquakesURL = "quiz2.atom";
+//		earthquakesURL = "quiz2.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
@@ -94,7 +94,7 @@ public class EarthquakeCityMap extends PApplet {
 		//     STEP 2: read in city data
 		List<Feature> cities = GeoJSONReader.loadData(this, cityFile);
 		cityMarkers = new ArrayList<Marker>();
-		for(Feature city : cities) {
+		for (Feature city : cities) {
 		  cityMarkers.add(new CityMarker(city));
 		}
 	    
@@ -102,15 +102,13 @@ public class EarthquakeCityMap extends PApplet {
 	    List<PointFeature> earthquakes = ParseFeed.parseEarthquake(this, earthquakesURL);
 	    quakeMarkers = new ArrayList<Marker>();
 	    
-	    for(PointFeature feature : earthquakes) {
+	    for (PointFeature feature : earthquakes) {
 		  //check if LandQuake
-		  if(isLand(feature)) {
+		  if (isLand(feature))
 		    quakeMarkers.add(new LandQuakeMarker(feature));
-		  }
 		  // OceanQuakes
-		  else {
-		    quakeMarkers.add(new OceanQuakeMarker(feature));
-		  }
+		  else
+		  	quakeMarkers.add(new OceanQuakeMarker(feature));
 	    }
 
 	    // could be used for debugging
@@ -122,7 +120,7 @@ public class EarthquakeCityMap extends PApplet {
 	    map.addMarkers(quakeMarkers);
 	    map.addMarkers(cityMarkers);
 
-//		sortAndPrint(5);
+//		sortAndPrint(100);
 	}  // End setup
 	
 	
