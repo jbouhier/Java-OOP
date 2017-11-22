@@ -147,11 +147,10 @@ public class EarthquakeCityMap extends PApplet {
 			unhideMarkers();
 		} else {
 			// Set lastClicked Marker
-			lastClicked = markerSelected();
+			markerSelected();
 
 			// No Marker clicked -> exit method
-			if (lastClicked == null)
-				return;
+			if (lastClicked == null) return;
 
 			if (lastClicked instanceof CityMarker)
 				cityClicked();
@@ -197,19 +196,18 @@ public class EarthquakeCityMap extends PApplet {
 	}
 
 
-	private CommonMarker markerSelected() {
+	private void markerSelected() {
 		for (Marker marker : quakeMarkers) {
-			if (marker.isInside(map, mouseX, mouseY)) {
-				return (CommonMarker) marker;
+			if (marker.isInside(map, mouseX, mouseY) && !marker.isHidden()) {
+				lastClicked = (CommonMarker) marker;
 			}
 		}
 
 		for (Marker marker : cityMarkers) {
-			if (marker.isInside(map, mouseX, mouseY)) {
-				return (CommonMarker) marker;
+			if (marker.isInside(map, mouseX, mouseY) && !marker.isHidden()) {
+				lastClicked = (CommonMarker) marker;
 			}
 		}
-		return null;
 	}
 	
 	
