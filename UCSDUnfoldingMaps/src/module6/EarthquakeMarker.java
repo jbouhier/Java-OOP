@@ -44,8 +44,7 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		
 	
 	// constructor
-	public EarthquakeMarker (PointFeature feature) 
-	{
+	public EarthquakeMarker (PointFeature feature) {
 		super(feature.getLocation());
 		// Add a radius property and then set the properties
 		java.util.HashMap<String, Object> properties = feature.getProperties();
@@ -95,7 +94,6 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		
 		// reset to previous styling
 		pg.popStyle();
-		
 	}
 
 	/** Show the title of the earthquake if this marker is selected */
