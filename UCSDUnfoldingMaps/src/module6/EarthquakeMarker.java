@@ -111,10 +111,8 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		pg.textAlign(PConstants.LEFT, PConstants.TOP);
 		pg.fill(0);
 		pg.text(title, x + 3 , y +18);
-		
-		
+
 		pg.popStyle();
-		
 	}
 
 	
@@ -181,8 +179,6 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 	{
 		return isOnLand;
 	}
-	
 
-	
 	
 }

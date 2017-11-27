@@ -15,6 +15,7 @@ import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
 import parsing.ParseFeed;
 import processing.core.PApplet;
+import processing.core.PGraphics;
 
 /** EarthquakeCityMap
  * An application with an interactive map displaying earthquake data.
@@ -35,9 +36,16 @@ public class EarthquakeCityMap extends PApplet {
 
 	// IF YOU ARE WORKING OFFILINE, change the value of this variable to true
 	private static final boolean offline = false;
-	
+
+	// Application windows size
+	private static final int SIZE_WIDTH = 900;
+	private static final int SIZE_HEIGHT = 700;
+
+	// Create a buffer to draw title information over map markers
+	private PGraphics pgBuffer;
+
 	/** This is where to find the local tiles, for working without an Internet connection */
-	public static String mbTilesString = "blankLight-1-3.mbtiles";
+	private static String mbTilesString = "blankLight-1-3.mbtiles";
 	
 	
 
@@ -64,8 +72,10 @@ public class EarthquakeCityMap extends PApplet {
 	private CommonMarker lastClicked;
 	
 	public void setup() {		
-		// (1) Initializing canvas and map tiles
-		size(900, 700, OPENGL);
+		// (1) Initializing canvas, map tiles and title info buffer
+		size(SIZE_WIDTH, SIZE_HEIGHT, OPENGL);
+		pgBuffer = createGraphics(SIZE_WIDTH, SIZE_HEIGHT);
+
 		if (offline) {
 		    map = new UnfoldingMap(this, 200, 50, 650, 600, new MBTilesMapProvider(mbTilesString));
 		    earthquakesURL = "2.5_week.atom";  // The same feed, but saved August 7, 2015
@@ -95,7 +105,8 @@ public class EarthquakeCityMap extends PApplet {
 		List<Feature> cities = GeoJSONReader.loadData(this, cityFile);
 		cityMarkers = new ArrayList<Marker>();
 		for (Feature city : cities) {
-		  cityMarkers.add(new CityMarker(city));
+			city.addProperty("pgBuffer", pgBuffer);
+			cityMarkers.add(new CityMarker(city));
 		}
 	    
 		//     STEP 3: read in earthquake RSS feed
@@ -103,12 +114,12 @@ public class EarthquakeCityMap extends PApplet {
 	    quakeMarkers = new ArrayList<Marker>();
 	    
 	    for (PointFeature feature : earthquakes) {
-		  //check if LandQuake
-		  if (isLand(feature))
-		    quakeMarkers.add(new LandQuakeMarker(feature));
-		  // OceanQuakes
-		  else
-		  	quakeMarkers.add(new OceanQuakeMarker(feature));
+	    	feature.addProperty("pgBuffer", pgBuffer);
+
+	    	if (isLand(feature))
+	    		quakeMarkers.add(new LandQuakeMarker(feature));
+	    	else
+	    		quakeMarkers.add(new OceanQuakeMarker(feature));
 	    }
 
 	    // could be used for debugging
@@ -125,9 +136,10 @@ public class EarthquakeCityMap extends PApplet {
 	
 	
 	public void draw() {
-		background(0);
+		background(255, 250, 240);
 		map.draw();
 		addKey();
+		image(pgBuffer, 0, 0);
 	}
 
 	/**
@@ -172,7 +184,7 @@ public class EarthquakeCityMap extends PApplet {
 		if (lastSelected != null) return;
 		
 		for (Marker m : markers) {
-			CommonMarker marker = (CommonMarker)m;
+			CommonMarker marker = (CommonMarker) m;
 			if (marker.isInside(map,  mouseX, mouseY)) {
 				lastSelected = marker;
 				marker.setSelected(true);
@@ -258,20 +270,21 @@ public class EarthquakeCityMap extends PApplet {
 	
 	// loop over and unhide all markers
 	private void unhideMarkers() {
-		for(Marker marker : quakeMarkers) {
+		for (Marker marker : quakeMarkers) {
 			marker.setHidden(false);
 		}
 			
-		for(Marker marker : cityMarkers) {
+		for (Marker marker : cityMarkers) {
 			marker.setHidden(false);
 		}
 	}
-	
+
+
 	// helper method to draw key in GUI
 	private void addKey() {	
 		// Remember you can use Processing's graphics methods here
-		fill(255, 250, 240);
-		
+		fill(255, 255, 255);
+
 		int xbase = 25;
 		int ybase = 50;
 		
@@ -327,10 +340,7 @@ public class EarthquakeCityMap extends PApplet {
 		strokeWeight(2);
 		line(centerx-8, centery-8, centerx+8, centery+8);
 		line(centerx-8, centery+8, centerx+8, centery-8);
-		
-		
 	}
-
 	
 	
 	// Checks whether this quake occurred on land.  If it did, it sets the 
