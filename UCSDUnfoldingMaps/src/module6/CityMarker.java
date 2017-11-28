@@ -18,27 +18,17 @@ public class CityMarker extends CommonMarker {
 	public CityMarker(Location location) {
 		super(location);
 	}
-	
-	
+
 	public CityMarker(Feature city) {
 		super(((PointFeature)city).getLocation(), city.getProperties());
 		// Cities have properties: "name" (city name), "country" (country name)
 		// and "population" (population, in millions)
 	}
-	
-	
-	// pg is the graphics object on which you call the graphics
-	// methods.  e.g. pg.fill(255, 0, 0) will set the color to red
-	// x and y are the center of the object to draw. 
-	// They will be used to calculate the coordinates to pass
-	// into any shape drawing methods.  
-	// e.g. pg.rect(x, y, 10, 10) will draw a 10x10 square
-	// whose upper left corner is at position x, y
+
 	/**
 	 * Implementation of method to draw marker on the map.
 	 */
 	public void drawMarker(PGraphics pg, float x, float y) {
-		//System.out.println("Drawing a city");
 		// Save previous drawing style
 		pg.pushStyle();
 		
@@ -55,9 +45,9 @@ public class CityMarker extends CommonMarker {
 	{
 		String name = getCity() + " " + getCountry() + " ";
 		String pop = "Pop: " + getPopulation() + " Million";
-		
-		pg.beginDraw();
-		
+
+		pg.pushStyle();
+
 		pg.fill(255, 255, 255);
 		pg.textSize(12);
 		pg.rectMode(PConstants.CORNER);
@@ -66,8 +56,8 @@ public class CityMarker extends CommonMarker {
 		pg.textAlign(PConstants.LEFT, PConstants.TOP);
 		pg.text(name, x + 3,  y - TRI_SIZE - 33);
 		pg.text(pop,  x + 3 , y - TRI_SIZE - 18);
-		
-		pg.endDraw();
+
+		pg.popStyle();
 	}
 	
 	private String getCity()

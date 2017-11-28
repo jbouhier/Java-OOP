@@ -9,7 +9,6 @@ import processing.core.PGraphics;
  * @author UC San Diego Intermediate Software Development MOOC team
  *
  */
-// TODO: Implement the comparable interface
 public abstract class EarthquakeMarker extends CommonMarker implements Comparable<EarthquakeMarker>
 {
 	
@@ -180,5 +179,5 @@ public abstract class EarthquakeMarker extends CommonMarker implements Comparabl
 		return isOnLand;
 	}
 
-	
+
 }
