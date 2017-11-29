@@ -195,72 +195,71 @@ public class EarthquakeCityMap extends PApplet {
 	 */
 	@Override
 	public void mouseClicked() {
-		if (lastClicked != null) {
+		markerSelected();
+
+		if (lastClicked == null)
 			unhideMarkers();
-			lastClicked = null;
-		}
-		else if (lastClicked == null) 
-		{
-			checkEarthquakesForClick();
-			if (lastClicked == null) {
-				checkCitiesForClick();
+		else if (lastClicked instanceof CityMarker)
+			cityClicked();
+		else if (lastClicked instanceof EarthquakeMarker)
+			earthquakeClicked();
+	}
+
+	private void markerSelected() {
+		for (Marker quake : quakeMarkers) {
+			if (quake.isInside(map, mouseX, mouseY) && !quake.isHidden()) {
+				lastClicked = (CommonMarker) quake;
+				return;
 			}
+		}
+
+		for (Marker city: cityMarkers) {
+			if (city.isInside(map, mouseX, mouseY) && !city.isHidden()) {
+				lastClicked = (CommonMarker) city;
+				return;
+			}
+		}
+
+		lastClicked = null;
+	}
+
+	private void cityClicked() {
+		Location cityLocation = lastClicked.getLocation();
+
+		// Hide all non-threatening EarthquakeMarkers
+		for (Marker quake : quakeMarkers) {
+			double threatCircle = ((EarthquakeMarker)quake).threatCircle();
+			double cityQuakeDistance = cityLocation.getDistance(quake.getLocation());
+
+			if (cityQuakeDistance > threatCircle)
+				quake.setHidden(true);
+			else
+				quake.setHidden(false);
+		}
+
+		// Hide all the others CityMarkers
+		for (Marker city : cityMarkers) {
+			if (lastClicked != city)
+				city.setHidden(true);
 		}
 	}
 
+	private void earthquakeClicked() {
+		Location quakeLocation = lastClicked.getLocation();
+		double threatCircle = ((EarthquakeMarker)lastClicked).threatCircle();
 
-	// Helper method that will check if a city marker was clicked on
-	// and respond appropriately
-	private void checkCitiesForClick() {
-		if (lastClicked != null) return;
+		// Hide CityMarkers outside of selected quake threat circle
+		for (Marker city : cityMarkers) {
+			if (city.getDistanceTo(quakeLocation) > threatCircle)
+				city.setHidden(true);
+			else
+				city.setHidden(false);
+		}
 
-		// Loop over the earthquake markers to see if one of them is selected
-		for (Marker marker : cityMarkers) {
-			if (!marker.isHidden() && marker.isInside(map, mouseX, mouseY)) {
-				lastClicked = (CommonMarker)marker;
-				// Hide all the other earthquakes and hide
-				for (Marker mhide : cityMarkers) {
-					if (mhide != lastClicked) {
-						mhide.setHidden(true);
-					}
-				}
-				for (Marker mhide : quakeMarkers) {
-					EarthquakeMarker quakeMarker = (EarthquakeMarker)mhide;
-					if (quakeMarker.getDistanceTo(marker.getLocation()) 
-							> quakeMarker.threatCircle()) {
-						quakeMarker.setHidden(true);
-					}
-				}
-				return;
-			}
-		}		
-	}
-
-
-	// Helper method that will check if an earthquake marker was clicked on
-	// and respond appropriately
-	private void checkEarthquakesForClick() {
-		if (lastClicked != null) return;
-
-		// Loop over the earthquake markers to see if one of them is selected
-		for (Marker m : quakeMarkers) {
-			EarthquakeMarker marker = (EarthquakeMarker)m;
-			if (!marker.isHidden() && marker.isInside(map, mouseX, mouseY)) {
-				lastClicked = marker;
-				// Hide all the other earthquakes and hide
-				for (Marker mhide : quakeMarkers) {
-					if (mhide != lastClicked) {
-						mhide.setHidden(true);
-					}
-				}
-				for (Marker mhide : cityMarkers) {
-					if (mhide.getDistanceTo(marker.getLocation()) 
-							> marker.threatCircle()) {
-						mhide.setHidden(true);
-					}
-				}
-				return;
-			}
+		// Hide all others EarthquakeMarkers
+		for (Marker quake : quakeMarkers) {
+			if (lastClicked != quake)
+				quake.setHidden(true);
 		}
 	}
 
@@ -274,6 +273,8 @@ public class EarthquakeCityMap extends PApplet {
 		for (Marker marker : cityMarkers) {
 			marker.setHidden(false);
 		}
+
+		lastClicked = null;
 	}
 
 
