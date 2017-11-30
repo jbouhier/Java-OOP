@@ -195,7 +195,7 @@ public class EarthquakeCityMap extends PApplet {
 	 */
 	@Override
 	public void mouseClicked() {
-		markerSelected();
+		markerClicked();
 
 		if (lastClicked == null)
 			unhideMarkers();
@@ -205,7 +205,7 @@ public class EarthquakeCityMap extends PApplet {
 			earthquakeClicked();
 	}
 
-	private void markerSelected() {
+	private void markerClicked() {
 		for (Marker quake : quakeMarkers) {
 			if (quake.isInside(map, mouseX, mouseY) && !quake.isHidden()) {
 				lastClicked = (CommonMarker) quake;
